@@ -3,6 +3,8 @@ from fixture.session import SessionHelper
 from fixture.project import ProjectHelper
 from fixture.db import DbFixture
 from fixture.james import JamesHelper
+from fixture.signup import SignupHelper
+from fixture.mail import MailHelper
 
 
 class Application:
@@ -15,13 +17,15 @@ class Application:
         elif browser == "ie":
             self.wd = webdriver.Ie()
         else:
-            raise ValueError("Unrecognized browser %s" % browser)
+            raise ValueError(f"Unrecognized browser {browser}")
         self.wd.implicitly_wait(1)
         self.session = SessionHelper(self)
         self.project = ProjectHelper(self)
         self.james = JamesHelper(self)
         self.config = config
         self.base_url = config['web']['baseUrl']
+        self.signup = SignupHelper(self)
+        self.mail = MailHelper(self)
 
     def is_valid(self):
         try:
