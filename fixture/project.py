@@ -23,7 +23,8 @@ class ProjectHelper:
 
     def generate_random_name(self):
         symbols = string.ascii_letters + string.digits
-        return "group" + "".join([random.choice(symbols) for i in range(random.randrange(10))])
+        return "group" + "".join(
+            [random.choice(symbols) for i in range(random.randrange(10))])
 
     def delete(self, name):
         wd = self.app.wd
